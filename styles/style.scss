@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Rubik;
+    color: #737579;
+}
+@font-face {
+    font-family: Rubik;
+    src: url(https://fonts.google.com/specimen/Rubik);
+}
+@mixin Rubik-User-Name {
+    font-weight: 700;
+}
+body {
+    background-color: #F5F6FA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+}
+@mixin card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #FFFFFF;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5rem;
+    .vote-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #F5F6FA;
+        width: 5%;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        color: #5C58BB;
+        font-weight: bold;
+        margin-right: 2rem;
+        height: 5rem;
+        gap: 0.8rem;
+        button {
+            border: 0;
+        }
+    }
+    .card-main-section {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        gap: 0.5rem;
+        .info-section {
+            display: flex;
+            justify-content: space-between;
+            ul {
+                display: flex;
+                list-style: none;
+                flex-wrap: wrap;
+                gap: 1rem;
+                align-items: center;
+                &:last-child {
+                    color: #7270AB;
+                }
+                img {
+                    width: 2rem;
+                }
+            }
+        }
+        .user-name {
+            @include Rubik-User-Name;
+            color: black;
+        }
+    }
+}
+.comment-card {
+    @include card;
+}
+.replies-box {
+    padding-left: 2rem;
+    margin-left: 2.5rem;
+    border-left: 1px solid gray;
+}
