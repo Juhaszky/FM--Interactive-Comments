@@ -2,18 +2,23 @@ function generateCard(commentData, typeOfCard) {
   return `
     <div class="${typeOfCard}">
         <div class="vote-section">
+        <div class="btn-group">
             <button><img src="./images/icon-plus.svg" alt="icon_plus"></button>
             <p>${commentData.score}</p>
             <button><img src="./images/icon-minus.svg" alt="icon_minus"></button>
+            </div>
         </div>
         <div class="card-main-section">
             <div class="info-section">
                 <ul>
-                    <li><img src="${commentData.user.image.webp}" alt="" srcset=""></li>
+                    <li><img class="user-image" src="${commentData.user.image.webp}" alt="" srcset=""></li>
                     <li class="user-name">${commentData.user.username}</li>
                     <li>${commentData.createdAt}</li>
-                    <li><img src="./images/icon-reply.svg" alt="" srcset=""> Reply</li>
+                    
                 </ul>
+                <ul>
+              <li><img class="reply-icon" src="./images/icon-reply.svg" alt="" srcset=""> Reply</li>
+              </ul>
             </div>
             <div class="comment-section">
                 <p>${commentData.content}</p>
