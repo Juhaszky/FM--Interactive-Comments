@@ -108,16 +108,13 @@ main {
     .comment-input-box {
         width: 70%;
         display: inline-block;
-        input {
+        textarea {
             height: 2rem;
             border: 1px solid #E9EAEE;
             border-radius: 0.2rem;
             width: 100%;
+            height: 5rem;
         }
-        input::placeholder {
-            
-            padding: 1rem;
-         }
 
     }
     .comment-send-btn {
