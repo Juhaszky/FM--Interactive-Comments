@@ -95,7 +95,7 @@ main {
     border-left: 0.2rem solid #E9EAEE;
 }
 
-.write-comment-card {
+.write-comment-card { //TODO
     @include card;
     
     justify-content: space-between;
@@ -138,5 +138,11 @@ main {
     }
     .replies-box {
         margin-left: 0;
+    }
+    .write-comment-card {
+        flex-direction: row;
+    }
+    .comment-input-box {
+        order: 1;
     }
 }
