@@ -89,6 +89,9 @@ main {
 .comment-card {
     @include card;
 }
+.reply-card {
+    @include card;
+}
 .replies-box {
     padding-left: 2rem;
     margin-left: 2.5rem;
