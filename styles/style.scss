@@ -52,7 +52,7 @@ main {
         
         height: 5rem;
         gap: 0.8rem;
-        button {
+        & button {
             border: 0;
         }
     }
@@ -82,6 +82,10 @@ main {
         .user-name {
             @include Rubik-User-Name;
             color: black;
+        }
+        #deleteBtn {
+            color: #ED6368;
+            display: none;
         }
     }
 

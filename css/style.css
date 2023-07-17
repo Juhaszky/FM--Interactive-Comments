@@ -84,6 +84,10 @@ main {
   font-weight: 700;
   color: black;
 }
+.comment-card .card-main-section #deleteBtn {
+  color: #ED6368;
+  display: none;
+}
 
 .reply-card {
   display: flex;
@@ -139,6 +143,10 @@ main {
 .reply-card .card-main-section .user-name {
   font-weight: 700;
   color: black;
+}
+.reply-card .card-main-section #deleteBtn {
+  color: #ED6368;
+  display: none;
 }
 
 .replies-box {
@@ -202,6 +210,10 @@ main {
 .write-comment-card .card-main-section .user-name {
   font-weight: 700;
   color: black;
+}
+.write-comment-card .card-main-section #deleteBtn {
+  color: #ED6368;
+  display: none;
 }
 .write-comment-card .current-user-image {
   width: 10%;

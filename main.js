@@ -1,58 +1,47 @@
-function generateCard(commentData, typeOfCard) {
-  console.log(typeOfCard);
-  return `
-    <div class="${typeOfCard}">
-        <div class="vote-section">
-        <div class="btn-group">
-            <button onClick="updateScore(${commentData.id}, 'increase', '${typeOfCard}')"><img src="./images/icon-plus.svg" alt="icon_plus"></button>
-            <p id="score_${typeOfCard}_${commentData.id}">${commentData.score}</p>
-            <button onClick="updateScore(${commentData.id}, 'decrease', '${typeOfCard}')"><img src="./images/icon-minus.svg" alt="icon_minus"></button>
-            </div>
-        </div>
-        <div class="card-main-section">
-            <div class="info-section">
-                <ul>
-                    <li><img class="user-image" src="${commentData.user.image.webp}" alt="" srcset=""></li>
-                    <li class="user-name">${commentData.user.username}</li>
-                    <li>${commentData.createdAt}</li>
-                </ul>
-                <ul>
-              <li><img class="reply-icon" src="./images/icon-reply.svg" alt="" srcset=""> Reply</li>
-              </ul>
-            </div>
-            <div class="comment-section">
-                <p>${commentData.content}</p>
-            </div>
-        </div>
-    </div>
-    </div>`;
-}
+import { getComments, setComments, saveCurrentUser, saveComments } from './js/services/localstorage.service.js'
+import { generateBasicCard, generateRepliesBox, fillRepliesBox, generateCommentsEl, fillCommentsEl} from './js/generate-layout/generate-card.js'
 
-function generateReply() {}
 
-function generateLayout() {
-  getCommentInformations().then((res) =>
+function generateLayout(comments) {
+  if (comments.length > 0) { 
+    generateCommentsEl();
+  }
+  comments.forEach((comment) => {
+    const commentCard = generateBasicCard(comment ,"comment-card");
+    fillCommentsEl(commentCard);
+    if (comment.replies.length > 0) {
+      generateRepliesBox(comment.id);
+      comment.replies.forEach((reply) => {
+        const replyEl = generateBasicCard(reply, "reply-card");
+        fillRepliesBox(replyEl);
+      });
+    }
+  });
+  /*getCommentInformations().then((res) =>
     res.json().then((data) => {
       const commentsBoxEl = document.querySelector(".comments");
       data.comments.forEach((comment, index) => {
         const commentDiv = document.createElement("div");
         commentDiv.classList.add(`comment-${index}`);
         commentDiv.innerHTML += generateCard(comment, "comment-card");
+        console.log(comment);
+        
         if (comment.replies.length > 0) {
           const repliesDiv = document.createElement("div");
           repliesDiv.classList.add("replies-box");
           comment.replies.forEach((reply) => {
             commentDiv.insertAdjacentElement("beforeend", repliesDiv);
             repliesDiv.innerHTML += generateCard(reply, "reply-card");
+            //showDeleteBtn(reply.username);
           });
         }
         commentsBoxEl.insertAdjacentElement("beforeend", commentDiv);
+        //showDeleteBtn(comment.user.username);
       });
     })
-  );
+  );*/
 }
 
-function checkUser() {}
 
 async function getCommentInformations() {
   return fetch("./data.json");
@@ -61,8 +50,11 @@ async function getCommentInformations() {
 function onInit() {
   getCommentInformations().then((res) =>
     res.json().then((data) => {
-      localStorage.setItem("comments", JSON.stringify(data.comments));
-      localStorage.setItem("currentUser", JSON.stringify(data.currentUser));
+      const comments = data.comments;
+      console.log(comments);
+      saveCurrentUser(data.currentUser);
+      saveComments(comments);
+      generateLayout(comments)
     })
   );
 }
@@ -92,7 +84,7 @@ function refreshHtmlScore(score, id, typeOfCard) {
 }
 
 //Comment functions
-function getComments() {
+/*function getComments() {
   return JSON.parse(localStorage.getItem("comments"));
 }
 function setComments(comments) {
@@ -101,7 +93,7 @@ function setComments(comments) {
 
 function findCommentById(comments, id) {
   return comments.find((comment) => comment.id === id);
-}
+}*/
 
 //Reply functions
 
@@ -119,7 +111,19 @@ function findReplyById(comments, id) {
   return reply;
 }
 
+function showDeleteBtn(user) {
+  const currentUser = getCurrentUser();
+  console.log(user);
+  console.log(currentUser);
+  if (currentUser.username === user.username) {
+    document.getElementById('deleteBtn').style.display = '';
+  }
+}
+
+function getCurrentUser() {
+  return localStorage.getItem('currentUser');
+}
+
 function saveReplyToLocalStorage(id, reply) {}
 
-generateLayout();
 onInit();
