@@ -1,11 +1,10 @@
 function getComments() {
-    return JSON.parse(localStorage.getItem("comments"));
+  return JSON.parse(localStorage.getItem("comments"));
 }
 
 function setComments(comments) {
-    return localStorage.setItem("comments", JSON.stringify(comments));
+  return localStorage.setItem("comments", JSON.stringify(comments));
 }
-
 
 //save data to local storage on init
 function saveCurrentUser(currentUserData) {
@@ -15,5 +14,14 @@ function saveComments(commentsData) {
   localStorage.setItem("comments", JSON.stringify(commentsData));
 }
 
+function getCurrentUser() {
+  return localStorage.getItem("currentUser");
+}
 
-export { getComments, setComments, saveCurrentUser, saveComments }
+export {
+  getComments,
+  setComments,
+  saveCurrentUser,
+  saveComments,
+  getCurrentUser,
+};
