@@ -21,12 +21,6 @@ function addReply(id, reply) {
   comment.replies.push(reply);
 }
 
-function showDeleteBtn(user) {
-  const currentUser = getCurrentUser();
-  if (currentUser.username === user.username) {
-    document.getElementById("deleteBtn").style.display = "";
-  }
-}
 
 function saveReplyToLocalStorage(id, reply) {}
 

@@ -4,14 +4,13 @@ import { refreshHtmlScore } from '../generate-layout/layout.js';
 
 let replies;
 
-async function fetchComments() {
+function fetchComments() {
   return fetch("./data.json").then((replies) => replies = replies);
 }
 
 
 
 function updateScore(commentId, type, typeOfCard) {
-  console.log(replies);
   const comments = getComments();
   let data;
   if (typeOfCard === "comment-card") {

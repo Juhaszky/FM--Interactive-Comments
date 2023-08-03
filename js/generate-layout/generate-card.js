@@ -26,6 +26,7 @@
 </div>
 </div>*/
 import { updateScore } from "../services/comment.service.js";
+import { checkLoggedUser } from "../services/user.service.js";
 import { refreshHtmlScore } from "./layout.js"
 
 function fillCommentsEl(commentEl) {
@@ -132,12 +133,14 @@ function infoSectionList(comment) {
 function actionList(comment) {
   const ulListEl = document.createElement("ul");
   const liListEl = document.createElement("li");
-  const liDeleteBtnEl = document.createElement("button");
-  liDeleteBtnEl.id = "deleteBtn";
-  liDeleteBtnEl.classList.add("garbage-icon");
-  liDeleteBtnEl.src = "./images/icon-delete.svg";
-  liDeleteBtnEl.textContent = "Delete";
-  liListEl.appendChild(liDeleteBtnEl);
+  if(checkLoggedUser(comment.user.username)) {
+    const liDeleteBtnEl = document.createElement("button");
+    liDeleteBtnEl.id = "deleteBtn";
+    liDeleteBtnEl.classList.add("garbage-icon");
+    liDeleteBtnEl.src = "./images/icon-delete.svg";
+    liDeleteBtnEl.textContent = "Delete";
+    liListEl.appendChild(liDeleteBtnEl);
+  }
   ulListEl.appendChild(liListEl);
 
   const liReplyLiEl = document.createElement("li");
@@ -163,6 +166,14 @@ function generateBtn(imgPath, commentId, typeOfCard, action) {
   });
   btn.appendChild(img);
   return btn;
+}
+
+function genereateDeleteBtn(user) {
+  //const currentUser = getCurrentUser();
+  //if (currentUser.username === user.username) {
+
+    document.getElementById("deleteBtn").style.display = "";
+  //}
 }
 
 

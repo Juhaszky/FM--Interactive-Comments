@@ -15,7 +15,7 @@ function saveComments(commentsData) {
 }
 
 function getCurrentUser() {
-  return localStorage.getItem("currentUser");
+  return JSON.parse(localStorage.getItem("currentUser"));
 }
 
 export {

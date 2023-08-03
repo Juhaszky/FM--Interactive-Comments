@@ -86,7 +86,6 @@ main {
 }
 .comment-card .card-main-section #deleteBtn {
   color: #ED6368;
-  display: none;
 }
 
 .reply-card {
@@ -146,7 +145,6 @@ main {
 }
 .reply-card .card-main-section #deleteBtn {
   color: #ED6368;
-  display: none;
 }
 
 .replies-box {
@@ -213,7 +211,6 @@ main {
 }
 .write-comment-card .card-main-section #deleteBtn {
   color: #ED6368;
-  display: none;
 }
 .write-comment-card .current-user-image {
   width: 10%;
